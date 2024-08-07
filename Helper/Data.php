@@ -50,6 +50,7 @@ class Data extends AbstractHelper
         'tracing_sample_rate',
         'performance_tracking_enabled',
         'performance_tracking_excluded_areas',
+        'profiles_sample_rate',
         'ignore_js_errors',
     ];
 
@@ -93,6 +94,11 @@ class Data extends AbstractHelper
     public function getTracingSampleRate(): float
     {
         return (float) $this->config['tracing_sample_rate'] ?? 0.2;
+    }
+
+    public function getPhpProfileSampleRate(): float
+    {
+        return (float) ($this->config['profiles_sample_rate'] ?? 0);
     }
 
     /**
