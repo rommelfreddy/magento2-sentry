@@ -47,6 +47,9 @@ class Data extends AbstractHelper
         'js_sdk_version',
         'tracing_enabled',
         'tracing_sample_rate',
+        'performance_tracking_enabled',
+        'performance_tracking_excluded_areas',
+        'profiles_sample_rate',
         'ignore_js_errors',
         'disable_default_integrations',
     ];
@@ -96,6 +99,11 @@ class Data extends AbstractHelper
     public function getDisabledDefaultIntegrations(): array
     {
         return $this->config['disable_default_integrations'] ?? [];
+    }
+
+    public function getPhpProfileSampleRate(): float
+    {
+        return (float) ($this->config['profiles_sample_rate'] ?? 0);
     }
 
     /**
@@ -274,6 +282,16 @@ class Data extends AbstractHelper
     public function isPhpTrackingEnabled(): bool
     {
         return $this->scopeConfig->isSetFlag(static::XML_PATH_SRS.'enable_php_tracking');
+    }
+
+    public function isPerformanceTrackingEnabled(): bool
+    {
+        return $this->isTracingEnabled() && $this->config['performance_tracking_enabled'] ?? false;
+    }
+
+    public function getPerformanceTrackingExcludedAreas(): array
+    {
+        return $this->config['performance_tracking_excluded_areas'] ?? ['adminhtml', 'crontab'];
     }
 
     /**
