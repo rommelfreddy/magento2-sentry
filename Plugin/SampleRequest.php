@@ -7,7 +7,7 @@ use Magento\Framework\App\Request\Http;
 use Magento\Framework\App\ResponseInterface;
 
 /**
- * Plugin to sample request and send them to Sentry
+ * Plugin to sample request and send them to Sentry.
  */
 class SampleRequest
 {
